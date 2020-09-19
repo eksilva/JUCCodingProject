@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import styled from 'styled-components';
 
+import Form from './components/Form.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      birthdate: '',
-      consent: false
+      
     }
   }
 
@@ -18,6 +17,7 @@ class App extends React.Component {
     return(
       <Layer1>
         <H1>Contact Form</H1>
+        <Form field='Name: ' />
       </Layer1>
     )
   }
@@ -25,11 +25,10 @@ class App extends React.Component {
 }
 
 const Layer1 = styled.div`
-padding: 15px;
-padding-left: 45px;
+padding: 30px;
+padding-top: 10px;
 margin: 50px;
-height: 700px;
-width: 500px;
+
 border-radius: 40px;
 background: #3b3fba;
 box-shadow:  13px 13px 26px #292c82, 
