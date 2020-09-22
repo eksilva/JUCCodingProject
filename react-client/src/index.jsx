@@ -17,7 +17,7 @@ class App extends React.Component {
     return(
       <Layer1>
         <H1>Contact Form</H1>
-        <Form field='Name: ' />
+        <Form />
       </Layer1>
     )
   }
