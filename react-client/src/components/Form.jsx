@@ -22,8 +22,8 @@ class Form extends React.Component {
   componentDidMount() {
     axios.get(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`)
       .then(res => {
-        // this.setState({ id: res.data.id });
-        console.log(res.data);
+        this.setState({ id: res.data[0].id });
+        // console.log(res.data[0].id);
       })
   }
 
@@ -42,26 +42,31 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    const contact = {
-      id: 1,
-      name: this.state.name,
-      email: this.state.email,
-      birthdate: this.state.birthdate,
-      emailConsent: this.state.emailConsent
-    };
-
-    let pack = [contact];
-
-    console.log(JSON.stringify(pack));
-
-    // axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
-    //   .then(res => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //   })
-    alert('Success! Someone will reach out to you shortly via email.');
-    this.clearForm();
+    const validEmail = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (this.state.name === '') {
+      alert("You must enter your name.");
+    } else if (!this.state.email.match(validEmail)) {
+      alert("Must enter valid email address")
+    } else if (this.state.emailConsent === false) {
+      alert("You must agree to be contacted via email if you would like us to reach out.");
+    } else {
+      const contact = {
+        id: (this.state.id + 1),
+        name: this.state.name,
+        email: this.state.email,
+        birthdate: this.state.birthdate,
+        emailConsent: this.state.emailConsent
+      };
+      let pack = [contact];
+      console.log(JSON.stringify(pack));
+      // axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
+      //   .then(res => {
+      //     console.log(res);
+      //     console.log(res.data);
+      //   })
+      alert('Success! Someone will reach out to you shortly via email.');
+      this.clearForm();
+    }
   }
   
   clearForm() {
