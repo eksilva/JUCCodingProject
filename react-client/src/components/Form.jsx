@@ -59,11 +59,11 @@ class Form extends React.Component {
       };
       let pack = [contact];
       console.log(JSON.stringify(pack));
-      // axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
-      //   .then(res => {
-      //     console.log(res);
-      //     console.log(res.data);
-      //   })
+      axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
       alert('Success! Someone will reach out to you shortly via email.');
       this.clearForm();
     }

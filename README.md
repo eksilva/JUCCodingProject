@@ -9,7 +9,7 @@ After cloning, navigate to project folder and run:
 
 > npm install
 
-> npm run prod
+> npm run build
 
 > npm start
 
