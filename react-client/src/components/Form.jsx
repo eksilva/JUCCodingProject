@@ -43,12 +43,18 @@ class Form extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const validEmail = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const birthYear = this.state.birthdate.slice(0,4);
+  
     if (this.state.name === '') {
       alert("You must enter your name.");
     } else if (!this.state.email.match(validEmail)) {
-      alert("Must enter valid email address")
+      alert("Must enter valid email address");
     } else if (this.state.emailConsent === false) {
       alert("You must agree to be contacted via email if you would like us to reach out.");
+    } else if (Number(birthYear) >= Number(yyyy) - 1) {
+      alert("Please enter a valid birthdate");
     } else {
       const contact = {
         id: (this.state.id + 1),
@@ -58,6 +64,7 @@ class Form extends React.Component {
         emailConsent: this.state.emailConsent
       };
       let pack = [contact];
+      
       console.log(JSON.stringify(pack));
       axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
         .then(res => {
