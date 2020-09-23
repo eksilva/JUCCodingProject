@@ -5,24 +5,14 @@ import styled from 'styled-components';
 
 import Form from './components/Form.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    }
-  }
-
-  render() {
-    return(
-      <Layer1>
-        <H1>Contact Form</H1>
-        <Form />
-      </Layer1>
-    )
-  }
-
-}
+const App = () => (
+  
+  <Layer1>
+    <H1>Contact Form</H1>
+    <Form />
+  </Layer1>
+    
+)
 
 const Layer1 = styled.div`
 padding: 30px;

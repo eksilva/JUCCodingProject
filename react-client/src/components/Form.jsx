@@ -1,14 +1,16 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       name: '',
       email: '',
       birthdate: '',
-      consent: false
+      emailConsent: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,6 +18,15 @@ class Form extends React.Component {
     this.handleCheck = this.handleCheck.bind(this);
     this.clearForm = this.clearForm.bind(this);
   }
+
+  componentDidMount() {
+    axios.get(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`)
+      .then(res => {
+        // this.setState({ id: res.data.id });
+        console.log(res.data);
+      })
+  }
+
 
   handleChange(event) {
     this.setState({
@@ -25,13 +36,32 @@ class Form extends React.Component {
 
   handleCheck() {
     this.setState({
-      consent: !this.state.consent,
+      emailConsent: !this.state.emailConsent,
     })
   }
 
   handleSubmit(event) {
-    console.log('submitted');
     event.preventDefault();
+
+    const contact = {
+      id: 1,
+      name: this.state.name,
+      email: this.state.email,
+      birthdate: this.state.birthdate,
+      emailConsent: this.state.emailConsent
+    };
+
+    let pack = [contact];
+
+    console.log(JSON.stringify(pack));
+
+    // axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
+    //   .then(res => {
+    //     console.log(res);
+    //     console.log(res.data);
+    //   })
+    alert('Success! Someone will reach out to you shortly via email.');
+    this.clearForm();
   }
   
   clearForm() {
@@ -40,7 +70,7 @@ class Form extends React.Component {
       name: '',
       email: '',
       birthdate: '',
-      consent: false
+      emailConsent: false
     });
   }
 
@@ -55,11 +85,11 @@ class Form extends React.Component {
         <Input type="text" value={this.state.email} onChange={this.handleChange} name='email' />
         
         <FieldLabel htmlFor='birthdate'>Birth date: </FieldLabel>
-        <Input type="text" value={this.state.birthdate} onChange={this.handleChange} name='birthdate' />
+        <Input type="date" value={this.state.birthdate} onChange={this.handleChange} name='birthdate' />
         
         <div>
-          <input name="consent" type="checkbox" checked={this.state.consent} onChange={this.handleCheck} />
-          <ConsentLabel htmlFor="consent"> I agree to be contacted via email</ConsentLabel>
+          <input name="emailConsent" type="checkbox" checked={this.state.emailConsent} onChange={this.handleCheck} />
+          <EmailConsentLabel htmlFor="emailConsent"> I agree to be contacted via email</EmailConsentLabel>
         </div>
         
         <ButtonDiv>
@@ -78,14 +108,14 @@ const FieldLabel = styled.label`
   color: #f8c53e;
 `;
 
-const ConsentLabel = styled(FieldLabel)`
+const EmailConsentLabel = styled(FieldLabel)`
   font-size: 1em;
 `;
 
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: palevioletred;
+  color: #bd516c;
   background: papayawhip;
   border: none;
   border-radius: 3px;
@@ -116,7 +146,6 @@ const Button2 = styled(Button1)`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-
 `;
 
 export default Form;
