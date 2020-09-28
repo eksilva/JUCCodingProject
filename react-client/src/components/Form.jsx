@@ -30,7 +30,7 @@ class Form extends React.Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.id]: event.target.value,
     })
   }
 
@@ -42,20 +42,7 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const validEmail = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const birthYear = this.state.birthdate.slice(0,4);
-  
-    if (this.state.name === '') {
-      alert("You must enter your name.");
-    } else if (!this.state.email.match(validEmail)) {
-      alert("Must enter valid email address");
-    } else if (this.state.emailConsent === false) {
-      alert("You must agree to be contacted via email if you would like us to reach out.");
-    } else if (Number(birthYear) >= Number(yyyy) - 1) {
-      alert("Please enter a valid birthdate");
-    } else {
+
       const contact = {
         id: (this.state.id + 1),
         name: this.state.name,
@@ -63,17 +50,18 @@ class Form extends React.Component {
         birthdate: this.state.birthdate,
         emailConsent: this.state.emailConsent
       };
+
       let pack = [contact];
       
       console.log(JSON.stringify(pack));
-      axios.post(`https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users`, { contact })
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
-      alert('Success! Someone will reach out to you shortly via email.');
-      this.clearForm();
-    }
+      // axios.post(`your api route here`, { contact })
+      //   .then(res => {
+      //     console.log(res);
+      //     console.log(res.data);
+      //     alert('Success! Someone will reach out to you shortly via email.');
+      //     this.clearForm();
+      //   })
+    
   }
   
   clearForm() {
@@ -91,16 +79,16 @@ class Form extends React.Component {
       <StyledForm onSubmit={this.handleSubmit}>
         
         <FieldLabel htmlFor='name'>Name: </FieldLabel>
-        <Input type="text" value={this.state.name} onChange={this.handleChange} name='name' />
+        <Input type="text" value={this.state.name} required={true} onChange={this.handleChange} id='name' />
         
         <FieldLabel htmlFor='email'>Email: </FieldLabel>
-        <Input type="text" value={this.state.email} onChange={this.handleChange} name='email' />
+        <Input type="email" value={this.state.email} required={true} onChange={this.handleChange} id='email' />
         
         <FieldLabel htmlFor='birthdate'>Birth date: </FieldLabel>
-        <Input type="date" value={this.state.birthdate} onChange={this.handleChange} name='birthdate' />
+        <Input type="date" value={this.state.birthdate} min="1900-01-01" max="2015-01-01" onChange={this.handleChange} id='birthdate' />
         
         <div>
-          <input name="emailConsent" type="checkbox" checked={this.state.emailConsent} onChange={this.handleCheck} />
+          <input id="emailConsent" type="checkbox" required={true} onChange={this.handleCheck} />
           <EmailConsentLabel htmlFor="emailConsent"> I agree to be contacted via email</EmailConsentLabel>
         </div>
         
