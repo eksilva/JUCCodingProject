@@ -17,4 +17,4 @@ After cloning, navigate to project folder and run:
 
 ### Notes
 
-> I'm still working on learning proper testing for components and general testing, so that would be what I would work on next. I usually don't practice TDD but can definitely learn if need be :)
+> I'm still working on learning proper testing for components and general testing, so that would be what I would work on next.
