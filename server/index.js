@@ -5,6 +5,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname,'/../react-client/dist')));
 
-app.listen(.listen(process.env.PORT || 5000), () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Contact Form running...`)
-})
+});
