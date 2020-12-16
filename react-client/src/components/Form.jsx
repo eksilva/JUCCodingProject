@@ -15,7 +15,6 @@ class Form extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
     this.clearForm = this.clearForm.bind(this);
   }
 
@@ -29,14 +28,11 @@ class Form extends React.Component {
 
 
   handleChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const id = target.id;
     this.setState({
-      [event.target.id]: event.target.value,
-    })
-  }
-
-  handleCheck() {
-    this.setState({
-      emailConsent: !this.state.emailConsent,
+      [id]: value,
     })
   }
 
@@ -88,7 +84,7 @@ class Form extends React.Component {
         <Input type="date" value={this.state.birthdate} min="1900-01-01" max="2015-01-01" onChange={this.handleChange} id='birthdate' />
         
         <div>
-          <input id="emailConsent" type="checkbox" required={true} onChange={this.handleCheck} />
+          <input id="emailConsent" type="checkbox" required={true} checked={this.state.emailConsent} onChange={this.handleChange} />
           <EmailConsentLabel htmlFor="emailConsent"> I agree to be contacted via email</EmailConsentLabel>
         </div>
         

@@ -4,7 +4,7 @@
   "description": "Take home coding challenge project for internship interview process.",
   "main": "index.jsx",
   "scripts": {
-    "build": "webpack -d --watch",
+    "devbuild": "webpack -d --watch",
     "start": "nodemon server/index.js"
   },
   "resolutions": {
