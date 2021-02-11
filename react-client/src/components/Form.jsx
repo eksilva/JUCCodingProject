@@ -99,9 +99,9 @@ class Form extends React.Component {
 }
 
 const FieldLabel = styled.label`
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.2em;
-  color: #f8c53e;
+  color: rgb(98, 243, 158);
 `;
 
 const EmailConsentLabel = styled(FieldLabel)`
@@ -111,8 +111,8 @@ const EmailConsentLabel = styled(FieldLabel)`
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: #bd516c;
-  background: papayawhip;
+  color: #053449;
+  background: ghostwhite;
   border: none;
   border-radius: 3px;
 `;
@@ -126,7 +126,7 @@ const ButtonDiv = styled.div`
 const Button1 = styled.button`
   background: #a83451;
   color: #f8c53e;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1em;
   margin: 1em 0 0 0;
   padding: 0.25em 1em;

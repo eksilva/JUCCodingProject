@@ -18,15 +18,17 @@ const Layer1 = styled.div`
 padding: 30px;
 padding-top: 10px;
 margin: 50px;
-
-border-radius: 40px;
-background: #3b3fba;
-box-shadow:  13px 13px 26px #292c82, 
-             -13px -13px 26px #4d52f2;
+border: 1px solid rgb(98, 243, 158);
+// border-radius: 4px;
+background: #053449;
+// box-shadow:  4px 0px 8px #1c2e36, 
+            -4px 0px 8px #1c2e36,
+            0px -4px 8px #1c2e36,
+            0px 4px 8px #1c2e36;
 `;
 
 const H1 = styled.h1`
-  font-family: 'Ubuntu', sans-serif;
-  color: #f8c53e;
+  font-family: 'Playfair Display', serif;
+  color: rgb(212, 153, 212);
 `;
 ReactDOM.render(<App />, document.getElementById('App'));
